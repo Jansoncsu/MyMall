@@ -185,7 +185,7 @@ public class UserServiceImpl implements IUserService{
         }
         //先把密码字段置空
         user.setPassword(StringUtils.EMPTY);
-        return ServerResponse.createBySuccessMessage(user);
+        return ServerResponse.createBySuccess(user);
     }
 
     //检验是否为管理员

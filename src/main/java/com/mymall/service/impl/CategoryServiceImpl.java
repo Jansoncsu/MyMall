@@ -65,7 +65,7 @@ public class CategoryServiceImpl implements ICategoryService{
        if(CollectionUtils.isEmpty(categoryList)){
            logger.info("未找到当前分类的子分类");
        }
-        return ServerResponse.createBySuccessMessage(categoryList);
+        return ServerResponse.createBySuccess(categoryList);
     }
 
     /**
@@ -83,7 +83,7 @@ public class CategoryServiceImpl implements ICategoryService{
                categoryIdList.add(categoryItem.getId());
            }
        }
-        return ServerResponse.createBySuccessMessage(categoryIdList);
+        return ServerResponse.createBySuccess(categoryIdList);
     }
 
     //递归算法,算出子节点
@@ -94,11 +94,13 @@ public class CategoryServiceImpl implements ICategoryService{
         }
         //查找子节点,递归算法一定要有一个退出的条件
         List<Category> categoryList = categoryMapper.selectCategoryChildrenByParentId(categoryId);
-        for(Category catetoryItem : categoryList){
-            findChildCategory(categorySet,catetoryItem.getId());
+        for(Category categoryItem : categoryList){
+            findChildCategory(categorySet,categoryItem.getId());
         }
         return categorySet;
     }
+
+
 
 
 
